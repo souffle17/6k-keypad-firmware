@@ -4,9 +4,16 @@ QMK firmware for the [6k keypad](https://github.com/souffle17/6k-keypad)
 
 Holding down a key while plugging it in will set the keypad to one of 6 keymaps.
 
+1. F13-F18
+2. F19-F24
+3. WASD
+4. Arrow keys
+5. Mouse control
+6. Media playback
+
 * Keyboard Maintainer: [souffle17](https://github.com/souffle17)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Hardware Supported: [6k keypad](https://github.com/souffle17/6k-keypad)
+* Hardware Availability: [6k keypad](https://github.com/souffle17/6k-keypad)
 
 Make example for this keyboard (after setting up your build environment):
 
