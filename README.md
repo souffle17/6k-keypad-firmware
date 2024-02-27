@@ -11,6 +11,7 @@ Holding down one or more keys while plugging it in will set the keypad to one of
 5. Text editing
 6. Media playback
 7. Mouse control
+8. Scrolling
 
 * Keyboard Maintainer: [souffle17](https://github.com/souffle17)
 * Hardware Supported: [6k keypad](https://github.com/souffle17/6k-keypad)

@@ -59,6 +59,9 @@ void bootmagic_lite(void) {
     else if (matrix_get_row(0) & (1 << 0) && matrix_get_row(0) & (1 << 1)) {
         layer_on(7);
     }
+    else if (matrix_get_row(0) & (1 << 0) && matrix_get_row(0) & (1 << 2)) {
+        layer_on(8);
+    }
     else if (matrix_get_row(0) & (1 << 0)) {
         layer_on(1);
     }
@@ -121,5 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [7] = LAYOUT_ortho_2x3(
         KC_MS_BTN1,    KC_MS_UP,    KC_MS_BTN2,
         KC_MS_LEFT,    KC_MS_DOWN,    KC_MS_RIGHT
+    ),
+    [8] = LAYOUT_ortho_2x3(
+        KC_MS_WH_UP,    KC_PAGE_UP,    KC_HOME,
+        KC_MS_WH_DOWN,    KC_PAGE_DOWN,    KC_END
     ),
 };
