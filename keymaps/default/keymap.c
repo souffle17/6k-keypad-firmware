@@ -3,6 +3,15 @@
 
 #include QMK_KEYBOARD_H
 
+typedef union {
+  uint32_t raw;
+  struct {
+    uint16_t     key_layer :16;
+  };
+} user_config_t;
+
+user_config_t user_config;
+
 enum custom_keycodes {
     KC_CTRL_C = SAFE_RANGE,
     KC_CTRL_V,
@@ -48,40 +57,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+void keyboard_post_init_user(void) {
+    layer_on(user_config.key_layer);
+}
+
 void bootmagic_lite(void) {
     matrix_scan();
     wait_ms(DEBOUNCE * 2);
     matrix_scan();
 
+    user_config.raw = eeconfig_read_user();
+
+    if (user_config.key_layer == 0) {
+        user_config.key_layer = 1;
+    }
+
+    //type safety
+    uint16_t layer = user_config.key_layer;
+
     if (matrix_get_row(0) & (1 << 0) && matrix_get_row(0) & (1 << 1) && matrix_get_row(0) & (1 << 2)) {
-        layer_on(0);
+        layer = 0;
     }
     else if (matrix_get_row(0) & (1 << 0) && matrix_get_row(0) & (1 << 1)) {
-        layer_on(7);
+        layer = 7;
     }
     else if (matrix_get_row(0) & (1 << 0) && matrix_get_row(0) & (1 << 2)) {
-        layer_on(8);
+        layer = 8;
     }
     else if (matrix_get_row(0) & (1 << 0)) {
-        layer_on(1);
+        layer = 1;
     }
     else if (matrix_get_row(0) & (1 << 1)) {
-        layer_on(2);
+        layer = 2;
     }
     else if (matrix_get_row(0) & (1 << 2)) {
-        layer_on(3);
+        layer = 3;
     }
     else if (matrix_get_row(1) & (1 << 0)) {
-        layer_on(4);
+        layer = 4;
     }
     else if (matrix_get_row(1) & (1 << 1)) {
-        layer_on(5);
+        layer = 5;
     }
     else if (matrix_get_row(1) & (1 << 2)) {
-        layer_on(6);
+        layer = 6;
     }
-    else {
-        layer_on(1);
+    else if (user_config.key_layer > 8){
+        layer = 1;
+    }
+
+    if (user_config.key_layer != layer) {
+        user_config.key_layer = layer;
+        eeconfig_update_user(user_config.raw); 
     }
 }
 
