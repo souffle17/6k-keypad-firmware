@@ -145,8 +145,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_CTRL_X,    KC_CTRL_C,    KC_CTRL_V
     ),
     [6] = LAYOUT_ortho_2x3(
-        KC_AUDIO_VOL_UP,    KC_MEDIA_PREV_TRACK,    KC_MEDIA_NEXT_TRACK,
-        KC_AUDIO_VOL_DOWN,    KC_MEDIA_PLAY_PAUSE,    KC_MEDIA_STOP
+        KC_AUDIO_VOL_DOWN,    KC_MEDIA_STOP,    KC_AUDIO_VOL_UP,
+        KC_MEDIA_PREV_TRACK,    KC_MEDIA_PLAY_PAUSE,    KC_MEDIA_NEXT_TRACK
     ),
     [7] = LAYOUT_ortho_2x3(
         KC_MS_BTN1,    KC_MS_UP,    KC_MS_BTN2,
